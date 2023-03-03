@@ -1,0 +1,25 @@
+ SELECT 'Минимальное значение'::text AS "Вид значения",
+    min(car.power) AS "Значение",
+    car.id
+   FROM car
+  WHERE car.power = (( SELECT min(car_1.power) AS min
+           FROM car car_1))
+  GROUP BY car.id
+UNION
+ SELECT 'Максимальное значение'::text AS "Вид значения",
+    max(car.power) AS "Значение",
+    car.id
+   FROM car
+  WHERE car.power = (( SELECT max(car_1.power) AS max
+           FROM car car_1))
+  GROUP BY car.id
+UNION
+ SELECT 'Среднее значение'::text AS "Вид значения",
+    avg(car.power) AS "Значение",
+    NULL::integer AS id
+   FROM car
+UNION
+ SELECT 'Сумма значений'::text AS "Вид значения",
+    sum(car.power) AS "Значение",
+    NULL::integer AS id
+   FROM car;

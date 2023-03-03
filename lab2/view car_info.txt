@@ -1,0 +1,13 @@
+ SELECT car.id,
+    car.power AS "Мощность",
+    car.year AS "Год производства",
+    brand.name AS "Прозвидитель",
+    brand.country AS "Страна",
+    body.name AS "Кузов",
+    transmission.name AS "Коробка передач",
+    color.name AS "Цвет"
+   FROM car
+     JOIN brand ON car.fk_brand_id = brand.id
+     JOIN body ON car.fk_body_id = body.id
+     JOIN transmission ON car.fk_transmission_id = transmission.id
+     JOIN color ON car.fk_color_id = color.id;
